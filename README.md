@@ -13,3 +13,4 @@ sudo systemctl enable mail-server.service
 Probar el script
 sudo systemctl start mail-server.service
 
+Clone and do npm install, the server.js program has a shebang: has been converted in a script ran by node directly.
