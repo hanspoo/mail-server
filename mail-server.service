@@ -1,0 +1,15 @@
+[Unit]
+Description=Permite enviar mails en puerto 7000
+
+[Service]
+PIDFile=/tmp/mail-server-99.pid
+User=hans
+Group=hans
+Restart=always
+KillSignal=SIGQUIT
+WorkingDirectory=/home/hans/mail-server/
+ExecStart=/home/hans/mail-server/server.js
+
+[Install]
+WantedBy=multi-user.target
+
