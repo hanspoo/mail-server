@@ -9,6 +9,7 @@ Restart=always
 KillSignal=SIGQUIT
 WorkingDirectory=/home/hans/mail-server/
 ExecStart=/home/hans/mail-server/server.js
+EnvironmentFile=/home/hans/mail-server/.env
 
 [Install]
 WantedBy=multi-user.target
