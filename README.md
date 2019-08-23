@@ -1,6 +1,6 @@
 ### Simple http server to handle contact forms that send email
 
-It's too simple and in production will require an aditional security layer to misuse. 
+It's too simple and in production will require an aditional security layer to avoid misuse. 
 
 Mail server sencillo programado en nodeejs con express, requiere recibe su configuración de un archivo .env.
 
