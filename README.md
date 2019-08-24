@@ -30,3 +30,12 @@ sudo systemctl enable mail-server.service
 Probar el script  
 sudo systemctl start mail-server.service  
 
+Para probar:
+
+sudo systemctl stop mail-server  
+sudo systemctl start mail-server  
+sudo journalctl -u mail-server  
+curl -X POST http://localhost:7000/sendmail -d 'nombre=xxx&email=xxxxx@gmail.com&message=xxx'  
+sudo journalctl -u mail-server  
+
+
