@@ -42,7 +42,14 @@ app.get("/", function(req, res) {
 });
 
 app.post("/sendmail", function(req, res) {
-	const options = Object.assign({}, mailOptions, { html: req.body });
+	const text = `
+    nombre: ${req.body.nombre}
+    email: ${req.body.email}
+    message: ${req.body.message}
+  `;
+	const options = Object.assign({}, mailOptions, {
+		text
+	});
 	transport.sendMail(options, function(err, info) {
 		if (err) console.log(err);
 		else console.log(info);
