@@ -1,5 +1,8 @@
 #!/usr/bin/node
 
+const dotenv = require("dotenv");
+dotenv.config();
+
 var express = require("express");
 var nodemailer = require("nodemailer");
 var app = express();
@@ -15,38 +18,38 @@ const user = process.env.USER;
 const pass = process.env.PASS;
 
 const mailOptions = {
-  from,
-  to,
-  subject: "Formulario de contacto" // Subject line
+	from,
+	to,
+	subject: "Formulario de contacto" // Subject line
 };
 
 const transport = nodemailer.createTransport({
-  host,
-  port: 587,
-  secure: false, // use TLS
-  auth: {
-    user,
-    pass
-  },
-  tls: {
-    // do not fail on invalid certs
-    rejectUnauthorized: false
-  }
+	host,
+	port: 587,
+	secure: false, // use TLS
+	auth: {
+		user,
+		pass
+	},
+	tls: {
+		// do not fail on invalid certs
+		rejectUnauthorized: false
+	}
 });
 
 app.get("/", function(req, res) {
-  res.send("Hello World!");
+	res.send("Hello World!");
 });
 
 app.post("/sendmail", function(req, res) {
-  const options = Object.assign({}, mailOptions, { html: req.body.content });
-  transport.sendMail(options, function(err, info) {
-    if (err) console.log(err);
-    else console.log(info);
-  });
-  res.send("Correo enviado");
+	const options = Object.assign({}, mailOptions, { html: req.body });
+	transport.sendMail(options, function(err, info) {
+		if (err) console.log(err);
+		else console.log(info);
+	});
+	res.send("Correo enviado");
 });
 
 app.listen(process.env.HTTP_PORT, function() {
-  console.log("Example app listening on port 7000!");
+	console.log("Example app listening on port 7000!");
 });
