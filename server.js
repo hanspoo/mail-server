@@ -6,6 +6,12 @@ dotenv.config();
 var express = require("express");
 var nodemailer = require("nodemailer");
 var app = express();
+var cors = require("cors");
+
+var corsOptions = {
+	origin: "http://*.welinux.cl",
+	optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
 
 var bodyParser = require("body-parser");
 app.use(bodyParser.json()); // support json encoded bodies
@@ -41,7 +47,7 @@ app.get("/", function(req, res) {
 	res.send("Hello World!");
 });
 
-app.post("/sendmail", function(req, res) {
+app.post("/sendmail", cors(corsOptions), function(req, res) {
 	const text = `
     nombre: ${req.body.nombre}
     email: ${req.body.email}
