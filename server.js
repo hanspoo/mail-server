@@ -8,11 +8,6 @@ var nodemailer = require("nodemailer");
 var app = express();
 var cors = require("cors");
 
-var corsOptions = {
-	origin: "http://*.welinux.cl",
-	optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-};
-
 var bodyParser = require("body-parser");
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
@@ -22,6 +17,12 @@ const to = process.env.TO;
 const host = process.env.HOST;
 const user = process.env.USER;
 const pass = process.env.PASS;
+const origin = process.env.ORIGIN;
+
+var corsOptions = {
+	origin,
+	optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
 
 const mailOptions = {
 	from,
